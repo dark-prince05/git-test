@@ -1,3 +1,5 @@
 # git-test
+
 My first GitHub repo!
-hello odin!
+Hello odin! The god of both war and death
+
