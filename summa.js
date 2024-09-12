@@ -21,7 +21,11 @@ let operate = (num1, operator, num2) => {
       res = multiplication(num1, num2);
       break;
     case "/":
-      res = division(num1, num2).toFixed(5);
+      if (num2 === 0) {
+        res = "hmm..trying to divide by 0";
+      } else {
+        res = division(num1, num2).toFixed(5);
+      }
       break;
     case "%":
       res = modulus(num1, num2);
@@ -40,15 +44,15 @@ const numBtns = document.querySelectorAll(".num-btn");
 const opBtns = document.querySelectorAll(".op-btn");
 const equals = document.querySelector("#equals");
 
-numBtns.forEach((btn) =>
+numBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (content) {
       display.textContent = "";
       content = false;
     }
     display.textContent += e.target.id;
-  }),
-);
+  });
+});
 
 opBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -70,9 +74,6 @@ opBtns.forEach((btn) => {
       secondNum = +display.textContent;
       display.textContent = operate(firstNum, operator, secondNum);
       content = true;
-    }
-    if (display.textContent.startsWith(".")) {
-      return;
     }
     firstNum = +display.textContent;
     operator = e.target.id;
